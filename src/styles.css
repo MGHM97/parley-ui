@@ -53,3 +53,78 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+[data-parley-tool-call] {
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 0.5rem;
+}
+
+[data-parley-tool-call-trigger] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+[data-parley-tool-call-title] {
+  flex: 1;
+  min-width: 0;
+}
+
+[data-parley-tool-call-status],
+[data-parley-tool-call-duration] {
+  font-size: 0.875em;
+  opacity: 0.75;
+}
+
+[data-parley-tool-call][data-status='running'] [data-parley-tool-call-icon] {
+  animation: parley-spin 0.9s linear infinite;
+}
+
+[data-parley-tool-call-panel] {
+  padding: 0 0.875rem 0.875rem;
+}
+
+[data-parley-tool-call-name] {
+  margin: 0;
+  font-size: 0.875em;
+  opacity: 0.75;
+}
+
+[data-parley-tool-call-panel] dl,
+[data-parley-tool-call-panel] dd {
+  margin: 0;
+}
+
+[data-parley-tool-call-panel] dt {
+  margin-top: 0.75rem;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-parley-tool-call-panel] pre {
+  margin: 0.25rem 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@keyframes parley-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-parley-tool-call][data-status='running'] [data-parley-tool-call-icon] {
+    animation: none;
+  }
+}

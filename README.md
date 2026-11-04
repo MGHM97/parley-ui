@@ -83,11 +83,44 @@ A chat composer that gets the keyboard details right.
 
 Any other prop goes to the `<textarea>`.
 
+## `ToolCall`
+
+Shows what an agent is doing when it calls a tool, and tells screen reader users when that changes.
+
+```tsx
+<ToolCall
+  name="search_docs"
+  title="Searching the docs"
+  status="running"
+  input={{ query: 'aria-live' }}
+/>
+```
+
+- A native `<button>` with `aria-expanded` and `aria-controls` toggles the details, so Enter and Space just work
+- Status changes are announced once each ("Searching the docs: Done"); a call that mounts already finished is treated as history and stays quiet, while one that mounts queued or running is announced
+- The trigger's accessible name joins title, status and duration with commas, so it never reads as "Searching the docsRunning"
+- Input, output and error sit in a description list instead of landmarks, so a long agent run doesn't flood the landmark menu
+- Values are pretty-printed JSON that wraps instead of scrolling, avoiding an unfocusable scroll region; pass `renderValue` for your own formatting
+- The running spinner stops under `prefers-reduced-motion`
+
+| Prop                   | Type                                                         | Default  |
+| ---------------------- | ------------------------------------------------------------ | -------- |
+| `name`                 | `string`                                                     | required |
+| `status`               | `'pending' \| 'running' \| 'success' \| 'error'`             | required |
+| `title`                | `string`                                                     | `name`   |
+| `input` / `output`     | `unknown`                                                    | —        |
+| `error`                | `ReactNode`                                                  | —        |
+| `durationMs`           | `number`                                                     | —        |
+| `open` / `defaultOpen` | `boolean`                                                    | `false`  |
+| `onOpenChange`         | `(open: boolean) => void`                                    | —        |
+| `labels`               | `{ status?, input?, output?, error?, announce?, duration? }` | English  |
+| `renderValue`          | `(value, kind) => ReactNode`                                 | JSON     |
+
 ## Roadmap
 
 - [x] `StreamingText`
 - [x] `PromptInput`
-- [ ] `ToolCall` — collapsible tool invocations with announced status
+- [x] `ToolCall`
 - [ ] `MessageList` — `role="log"` conversation with focus management
 - [ ] `Citations` — accessible inline sources
 

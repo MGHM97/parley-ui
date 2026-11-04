@@ -6,3 +6,6 @@ export { LiveRegion } from './live-region/LiveRegion';
 export type { Announcement, LiveRegionProps } from './live-region/LiveRegion';
 export { PromptInput } from './prompt-input/PromptInput';
 export type { PromptInputLabels, PromptInputProps } from './prompt-input/PromptInput';
+export { ToolCall, formatValue } from './tool-call/ToolCall';
+export type { ToolCallLabels, ToolCallProps, ToolCallStatus } from './tool-call/ToolCall';
+export { useAnnouncements } from './live-region/useAnnouncements';

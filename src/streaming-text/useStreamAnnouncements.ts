@@ -1,11 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Announcement } from '../live-region/LiveRegion';
+import { useAnnouncements } from '../live-region/useAnnouncements';
 import { takeAnnounceable } from './segment';
 
 export type AnnounceMode = 'sentences' | 'final' | 'off';
-
-const MAX_RETAINED = 5;
-let nextId = 0;
 
 export function useStreamAnnouncements(
   text: string,
@@ -13,7 +11,7 @@ export function useStreamAnnouncements(
   mode: AnnounceMode,
   onAnnounce?: (message: string) => void,
 ): Announcement[] {
-  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const { announcements, announce } = useAnnouncements();
   const offset = useRef(streaming ? 0 : text.length);
   const wasStreaming = useRef(streaming);
   const onAnnounceRef = useRef(onAnnounce);
@@ -39,11 +37,8 @@ export function useStreamAnnouncements(
     if (!chunk) return;
 
     onAnnounceRef.current?.(chunk);
-    setAnnouncements((current) => [
-      ...current.slice(1 - MAX_RETAINED),
-      { id: nextId++, text: chunk },
-    ]);
-  }, [text, streaming, mode]);
+    announce(chunk);
+  }, [text, streaming, mode, announce]);
 
   return announcements;
 }
