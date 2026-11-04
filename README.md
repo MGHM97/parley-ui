@@ -46,10 +46,47 @@ How it works:
 
 Need the announcements without the component? Use `useStreamAnnouncements(text, streaming, mode)` with `<LiveRegion />`.
 
+## `PromptInput`
+
+A chat composer that gets the keyboard details right.
+
+```tsx
+<PromptInput
+  label="Message"
+  placeholder="Ask anything…"
+  streaming={isStreaming}
+  onSubmit={send}
+  onStop={abort}
+/>
+```
+
+- **Enter** sends, **Shift+Enter** adds a new line, **Escape** stops generation
+- Never sends mid-composition when typing Japanese, Chinese or Korean, including Safari's late `Enter` after `compositionend`
+- Whitespace-only messages are ignored; the send button uses `aria-disabled` so it stays focusable and discoverable
+- While streaming, the send button becomes a stop button and the field stays editable for the next message
+- `label` is required, and keyboard shortcuts are exposed through `aria-describedby`
+- Controlled (`value` + `onValueChange`) or uncontrolled (`defaultValue`)
+- Every string is replaceable through `labels` for i18n
+- Grows with its content via `field-sizing: content`, falling back to a scrollable field in older browsers
+
+| Prop                     | Type                            | Default  |
+| ------------------------ | ------------------------------- | -------- |
+| `label`                  | `string`                        | required |
+| `onSubmit`               | `(value: string) => void`       | required |
+| `showLabel`              | `boolean`                       | `false`  |
+| `value` / `defaultValue` | `string`                        | —        |
+| `onValueChange`          | `(value: string) => void`       | —        |
+| `streaming`              | `boolean`                       | `false`  |
+| `onStop`                 | `() => void`                    | —        |
+| `labels`                 | `{ send?, stop?, hint? }`       | English  |
+| `formProps`              | props for the wrapping `<form>` | —        |
+
+Any other prop goes to the `<textarea>`.
+
 ## Roadmap
 
 - [x] `StreamingText`
-- [ ] `PromptInput` — Enter to send, Shift+Enter for newline, stop button, IME-safe
+- [x] `PromptInput`
 - [ ] `ToolCall` — collapsible tool invocations with announced status
 - [ ] `MessageList` — `role="log"` conversation with focus management
 - [ ] `Citations` — accessible inline sources

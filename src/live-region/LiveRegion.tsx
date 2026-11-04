@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { visuallyHidden } from '../utils/visuallyHidden';
 
 export interface Announcement {
   id: number;
@@ -9,15 +9,6 @@ export interface LiveRegionProps {
   announcements: Announcement[];
   politeness?: 'polite' | 'assertive';
 }
-
-const visuallyHidden: CSSProperties = {
-  position: 'absolute',
-  width: 1,
-  height: 1,
-  overflow: 'hidden',
-  clipPath: 'inset(50%)',
-  whiteSpace: 'nowrap',
-};
 
 // Each announcement is a new node, so screen readers read only what was added
 // instead of re-reading the whole region.

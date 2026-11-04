@@ -4,3 +4,5 @@ export { useStreamAnnouncements } from './streaming-text/useStreamAnnouncements'
 export type { AnnounceMode } from './streaming-text/useStreamAnnouncements';
 export { LiveRegion } from './live-region/LiveRegion';
 export type { Announcement, LiveRegionProps } from './live-region/LiveRegion';
+export { PromptInput } from './prompt-input/PromptInput';
+export type { PromptInputLabels, PromptInputProps } from './prompt-input/PromptInput';

@@ -25,3 +25,31 @@
     opacity: 0.6;
   }
 }
+
+[data-parley-prompt-input] {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+[data-parley-prompt-input] textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 12lh;
+  field-sizing: content;
+  resize: none;
+  font: inherit;
+}
+
+[data-parley-prompt-input] button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+[data-parley-prompt-input] button[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
