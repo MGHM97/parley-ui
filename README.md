@@ -116,12 +116,45 @@ Shows what an agent is doing when it calls a tool, and tells screen reader users
 | `labels`               | `{ status?, input?, output?, error?, announce?, duration? }` | English  |
 | `renderValue`          | `(value, kind) => ReactNode`                                 | JSON     |
 
+## `MessageList` and `Message`
+
+The conversation container, built so it doesn't fight the other components.
+
+```tsx
+<MessageList label="Conversation" style={{ height: 480 }}>
+  <Message author="user">How do live regions work?</Message>
+  <Message author="assistant">
+    <StreamingText text={reply} streaming={isStreaming} />
+  </Message>
+</MessageList>
+```
+
+- `role="log"` with an accessible name, so screen reader users know where the conversation is
+- `role="log"` is a polite live region by default; parley-ui sets `aria-live="off"` because `StreamingText` and `ToolCall` already announce themselves, and leaving both on reads every reply twice. Use `live="polite"` if your messages don't announce on their own
+- Follows new content only while the user is at the bottom. Scroll up to reread and it stays put, showing a "Jump to latest" button that returns to the end and moves focus to the log instead of dropping it on the page
+- Watches content size, so streaming text keeps the view pinned without re-rendering the list
+- The log is focusable, so keyboard users can scroll it (WCAG 2.1.1)
+- Each message is an `<article>` named after its author ("You", "Assistant", or a custom `name`), so screen readers can jump between messages; author names are visually hidden unless `showAuthors` is set
+- Smooth scrolling only when `prefers-reduced-motion` allows it
+
+| Prop (`MessageList`) | Type                                                          | Default  |
+| -------------------- | ------------------------------------------------------------- | -------- |
+| `label`              | `string`                                                      | required |
+| `live`               | `'off' \| 'polite'`                                           | `'off'`  |
+| `showAuthors`        | `boolean`                                                     | `false`  |
+| `labels`             | `{ authors?: { user?, assistant?, system? }, jumpToLatest? }` | English  |
+
+| Prop (`Message`) | Type                                | Default            |
+| ---------------- | ----------------------------------- | ------------------ |
+| `author`         | `'user' \| 'assistant' \| 'system'` | required           |
+| `name`           | `string`                            | label for `author` |
+
 ## Roadmap
 
 - [x] `StreamingText`
 - [x] `PromptInput`
 - [x] `ToolCall`
-- [ ] `MessageList` — `role="log"` conversation with focus management
+- [x] `MessageList`
 - [ ] `Citations` — accessible inline sources
 
 ## Development

@@ -12,5 +12,9 @@ export default tseslint.config(
   jsxA11y.flatConfigs.strict,
   {
     languageOptions: { globals: globals.browser },
+    rules: {
+      // Scrollable regions such as a chat log must be focusable (WCAG 2.1.1).
+      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'log'] }],
+    },
   },
 );

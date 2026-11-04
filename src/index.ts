@@ -9,3 +9,10 @@ export type { PromptInputLabels, PromptInputProps } from './prompt-input/PromptI
 export { ToolCall, formatValue } from './tool-call/ToolCall';
 export type { ToolCallLabels, ToolCallProps, ToolCallStatus } from './tool-call/ToolCall';
 export { useAnnouncements } from './live-region/useAnnouncements';
+export { Message, MessageList } from './message-list/MessageList';
+export type {
+  MessageAuthor,
+  MessageListLabels,
+  MessageListProps,
+  MessageProps,
+} from './message-list/MessageList';
