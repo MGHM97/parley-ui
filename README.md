@@ -164,7 +164,16 @@ yarn install
 yarn dev     # Storybook on http://localhost:6006
 yarn test    # Vitest + Testing Library + axe-core
 yarn build   # ESM + type declarations via tsdown
+yarn size    # size budget (5 kB, brotli)
 ```
+
+## Releasing
+
+1. Update `version` in `package.json` and move the "Unreleased" notes in [`CHANGELOG.md`](CHANGELOG.md) under that version.
+2. Commit, then tag and push: `git tag v0.2.0 && git push --follow-tags`.
+3. The [release workflow](.github/workflows/release.yml) checks that the tag matches `package.json`, runs every check again and publishes to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements). It needs an `NPM_TOKEN` repository secret.
+
+Locally, `yarn check:package` packs the library with `yarn pack` and lints the tarball with `publint` and `are-the-types-wrong`; `yarn size` enforces the size budget.
 
 ## Credits
 

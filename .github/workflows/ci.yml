@@ -24,6 +24,8 @@ jobs:
       - run: yarn typecheck
       - run: yarn test --run
       - run: yarn build
+      - run: yarn check:package
+      - run: yarn size
       - run: yarn build-storybook --quiet
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "parley-ui (all components)",
+    "path": "dist/index.js",
+    "import": "*",
+    "limit": "5 kB",
+    "ignore": ["react", "react-dom"]
+  }
+]
