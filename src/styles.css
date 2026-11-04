@@ -1,0 +1,27 @@
+[data-parley-streaming-text] {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+[data-parley-cursor] {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 0.1em;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: parley-blink 1s steps(2, start) infinite;
+}
+
+@keyframes parley-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-parley-cursor] {
+    animation: none;
+    opacity: 0.6;
+  }
+}

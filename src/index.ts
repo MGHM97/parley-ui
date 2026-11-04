@@ -1,0 +1,6 @@
+export { StreamingText } from './streaming-text/StreamingText';
+export type { StreamingTextProps } from './streaming-text/StreamingText';
+export { useStreamAnnouncements } from './streaming-text/useStreamAnnouncements';
+export type { AnnounceMode } from './streaming-text/useStreamAnnouncements';
+export { LiveRegion } from './live-region/LiveRegion';
+export type { Announcement, LiveRegionProps } from './live-region/LiveRegion';
