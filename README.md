@@ -9,7 +9,7 @@ Most chat UIs stream model output into an `aria-live` region and call it done. S
 ## Install
 
 ```sh
-npm install parley-ui
+yarn add parley-ui
 ```
 
 ```tsx
