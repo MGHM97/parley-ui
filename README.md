@@ -175,8 +175,10 @@ yarn size    # size budget (5 kB, brotli)
 
 Locally, `yarn check:package` packs the library with `yarn pack` and lints the tarball with `publint` and `are-the-types-wrong`; `yarn size` enforces the size budget.
 
-## Credits
+## How this library is built
 
-Built by [Mateus Vieira](https://github.com/MGHM97), with [Claude Code](https://claude.com/claude-code) as pair programmer.
+Built by [Mateus Vieira](https://github.com/MGHM97), with AI-assisted development using [Claude Code](https://claude.com/claude-code).
+
+I set the direction and requirements, review every change before it's pushed, and own what ships. Every component is held to the same bar regardless of who typed the code: strict TypeScript, unit and accessibility tests with axe-core, an accessibility gate in Storybook, package checks and a size budget in CI. Commits written with AI assistance carry a `Co-Authored-By` trailer.
 
 MIT License.
